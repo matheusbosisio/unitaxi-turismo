@@ -33,4 +33,4 @@ A estrutura de informações valoriza o que realmente importa para o turista: se
 **Matheus Bosisio Abrantes**
 - Bacharelando em Ciência da Computação - UFPB
 - [LinkedIn](https://www.linkedin.com/in/matheus-bosisio-abrantes-953751208/)
-- [GitHub](https://github.com/matheusbosisio)git push --set-upstream origin main
+- [GitHub](https://github.com/matheusbosisio)
