@@ -1,0 +1,18 @@
+# Unitaxi & Turismo
+
+> Serviço de táxi, transfer e turismo receptivo em João Pessoa (PB), com passeios pelo litoral da Paraíba e do Rio Grande do Norte.
+
+Site de uma empresa de transporte e turismo para moradores e visitantes. Os preços são fornecidos por orçamento pelo WhatsApp. O formulário prepara uma mensagem e não confirma reservas ou pagamentos.
+
+## Informações oficiais
+
+- [Página principal](https://unitaxi-turismo.vercel.app/): apresentação da empresa, serviços, catálogo e contato em HTML.
+- [Resumo em Markdown](https://unitaxi-turismo.vercel.app/informacoes.md): serviços, área de atendimento e procedimento de orçamento.
+- [Como solicitar orçamento](https://unitaxi-turismo.vercel.app/#como-reservar): informações necessárias e confirmação com a equipe.
+- [Catálogo de passeios](https://unitaxi-turismo.vercel.app/#passeios): roteiros e itens incluídos.
+- [Mapa do site](https://unitaxi-turismo.vercel.app/sitemap.xml): URLs públicas para descoberta.
+
+## Contato
+
+- [WhatsApp da Unitaxi](https://wa.me/558335087774): orçamento e disponibilidade.
+- [Instagram oficial](https://www.instagram.com/unitaxieturismo): perfil da empresa.

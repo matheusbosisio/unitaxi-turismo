@@ -103,6 +103,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="alternate" type="text/markdown" href="https://unitaxi-turismo.vercel.app/informacoes.md" title="Unitaxi &amp; Turismo — informações em texto">
+<link rel="sitemap" type="application/xml" href="https://unitaxi-turismo.vercel.app/sitemap.xml">
+<noscript><style>
+  .nav-toggle, .filters, #transferForm, #contactForm { display:none !important; }
+  .nav-links { display:flex; position:static; flex-wrap:wrap; }
+  .nav { flex-wrap:wrap; }
+  header { position:static; }
+</style></noscript>
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -128,13 +136,14 @@
     <div>
       <span class="eyebrow">João Pessoa · Litoral PB &amp; RN</span>
       <h1>Seu trajeto começa com quem <em>conhece o caminho</em>.</h1>
-      <p class="lead">Táxi credenciado para o dia a dia e passeios guiados pelo melhor do litoral paraibano e potiguar, de city tours a dunas de buggy, com motoristas que viram guias.</p>
+      <p class="lead"><strong>Unitaxi &amp; Turismo, em João Pessoa.</strong> Táxi credenciado para o dia a dia e passeios guiados pelo melhor do litoral paraibano e potiguar, de city tours a dunas de buggy, com motoristas que viram guias.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://wa.me/558335087774?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
         <a class="btn btn-ghost" href="#passeios">Ver passeios</a>
       </div>
     </div>
     <div class="quote-card">
+      <noscript><p><a href="https://wa.me/558335087774">Solicitar transfer diretamente pelo WhatsApp</a></p></noscript>
       <span class="quote-badge">Cotação rápida</span>
       <h2 id="transfer-title">Peça seu transfer</h2>
       <form id="transferForm" aria-labelledby="transfer-title" aria-describedby="transfer-note">
@@ -524,6 +533,33 @@
   </div>
 </section>
 
+
+<section class="services" id="como-reservar" aria-labelledby="booking-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Planeje sua viagem</span>
+      <h2 id="booking-title">Como solicitar seu orçamento</h2>
+      <p>Atendemos moradores e visitantes que procuram táxi, transfer ou passeios turísticos em João Pessoa e região.</p>
+    </div>
+    <div class="service-grid">
+      <article class="service-card">
+        <h3>Quanto custa?</h3>
+        <p>O orçamento é personalizado conforme trajeto, data e quantidade de passageiros. Consulte os valores pelo WhatsApp antes de contratar. Os valores opcionais indicados no catálogo não representam o preço total do passeio.</p>
+      </article>
+      <article class="service-card">
+        <h3>Como pedir um transfer?</h3>
+        <p>Informe partida, destino, data, horário e número de passageiros no formulário. Se sair de hotel ou outro endereço, inclua o local completo.</p>
+        <a class="link" href="#transferForm">Preencher cotação de transfer →</a>
+      </article>
+      <article class="service-card">
+        <h3>O formulário confirma a reserva?</h3>
+        <p>Não. O formulário prepara uma mensagem para você revisar e enviar pelo WhatsApp. Disponibilidade, valor e confirmação devem ser combinados com a equipe.</p>
+        <a class="link" href="https://wa.me/558335087774" target="_blank" rel="noopener noreferrer">Conversar sobre o orçamento →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="contact" id="contato">
   <div class="wrap contact-grid">
     <div class="contact-info">
@@ -562,6 +598,7 @@
     </div>
 
     <div class="contact-form">
+      <noscript><p><a href="https://wa.me/558335087774">Solicitar orçamento diretamente pelo WhatsApp</a></p></noscript>
       <h3 id="contact-title">Peça um orçamento</h3>
       <form id="contactForm" aria-labelledby="contact-title" aria-describedby="contact-note">
         <div class="field">
@@ -615,12 +652,17 @@
         <a href="#contato">Contato</a>
       </nav>
     </div>
-    <div class="footer-fine">© <span id="year"></span> Unitaxi &amp; Turismo, João Pessoa, PB. (83) 3508-7774.</div>
+    <div class="footer-fine">© <span id="year">2026</span> Unitaxi &amp; Turismo, João Pessoa, PB. (83) 3508-7774.</div>
   </div>
 </footer>
 
 <a class="wa-float" href="https://wa.me/558335087774" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.41-1.42a9.86 9.86 0 0 0 4.63 1.18h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.02h-.01a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.08.81.82-3-.2-.31a8.09 8.09 0 0 1-1.24-4.3c0-4.48 3.65-8.13 8.14-8.13 2.17 0 4.21.85 5.75 2.38a8.08 8.08 0 0 1 2.38 5.76c0 4.48-3.65 8.13-8.13 8.13zm4.46-6.09c-.24-.12-1.44-.71-1.67-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg></a>
 
+<noscript>
+  <div class="wrap">
+    <p>Para pedir orçamento sem JavaScript, <a href="https://wa.me/558335087774">fale diretamente com a Unitaxi pelo WhatsApp</a>. Informe seu trajeto, data, horário e número de passageiros. Todos os passeios estão disponíveis no catálogo acima.</p>
+  </div>
+</noscript>
 <script src="js/main.js" defer></script>
 
 </body>
