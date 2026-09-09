@@ -74,7 +74,7 @@
     color:var(--gold-400); font-family:'JetBrains Mono', monospace; font-size:0.78rem;
     letter-spacing:0.08em; text-transform:uppercase; margin-bottom:12px;
   }
-  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--gold-400);}
+
   .hero h1{ text-wrap:balance; color:var(--sand-100); font-size:clamp(2rem, 4vw, 3.2rem); line-height:1.08; margin-bottom:22px;}
   .hero h1 em{ font-style:italic; color:var(--gold-400);}
   .hero p.lead{ color:var(--sand-200); font-size:1.06rem; max-width:490px; margin-bottom:34px;}
@@ -116,7 +116,7 @@
 
   .section-head{ max-width:600px; margin-bottom:32px;}
   .section-head .eyebrow{ color:#B94325;}
-  .section-head .eyebrow::before{ background:#B94325;}
+
   .section-head h2{ font-size:clamp(1.6rem, 3vw, 2.2rem); color:var(--teal-950);}
   .section-head p{ color:var(--ink-600); margin-top:14px; font-size:1.02rem;}
 
@@ -147,7 +147,7 @@
   }
   .fleet .section-head{ margin-left:auto; margin-right:auto; text-align:center; max-width:620px;}
   .fleet .section-head .eyebrow{ justify-content:center; color:var(--gold-400);}
-  .fleet .section-head .eyebrow::before{ background:var(--gold-400);}
+
   .fleet .section-head h2{ color:var(--sand-100);}
   .fleet .section-head p{ color:var(--sand-200);}
   .fleet-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
