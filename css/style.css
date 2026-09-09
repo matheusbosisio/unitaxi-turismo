@@ -356,3 +356,7 @@
 
 .highlight-img img { width:100%; height:100%; object-fit:cover; }
 .highlight-img:has(img[src*="por-do-sol-jacare"]) img { object-position:center 65%; }
+
+/* Compact emblem for header and footer */
+.brand img { width:56px; height:56px; object-fit:contain; flex-shrink:0; border-radius:8px; }
+@media(max-width:600px) { .nav { padding-top:8px; padding-bottom:8px; } .nav .brand { gap:8px; min-width:0; } .nav .brand img { width:48px; height:48px; } .nav .brand span { font-size:clamp(0.78rem,3.5vw,1rem); } .nav-toggle { flex-shrink:0; } }
