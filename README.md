@@ -34,3 +34,14 @@ A estrutura de informações valoriza o que realmente importa para o turista: se
 - Bacharelando em Ciência da Computação - UFPB
 - [LinkedIn](https://www.linkedin.com/in/matheus-bosisio-abrantes-953751208/)
 - [GitHub](https://github.com/matheusbosisio)
+
+## Descoberta e conteúdo para assistentes
+
+- `robots.txt` permite leitura das páginas públicas e aponta para `sitemap.xml`.
+- `llms.txt` indexa as informações oficiais; `informacoes.md` resume o conteúdo público.
+- Ao mudar serviços, contato ou o processo de orçamento, atualize também esses resumos.
+- `404.html` usa o mecanismo nativo da Vercel para caminhos inexistentes; não adicione rewrite geral para index.html.
+- O Markdown é oferecido por URL própria, anunciado no HTML por rel="alternate". Não há negociação pelo cabeçalho Accept.
+- O catálogo e as informações principais continuam presentes no HTML sem JavaScript.
+
+Após publicar, confira o status HTTP 404 de um caminho inexistente e o acesso a /robots.txt, /sitemap.xml, /llms.txt e /informacoes.md. Execute novamente o Is Agentic; a pontuação depende do avaliador e não é garantida.
