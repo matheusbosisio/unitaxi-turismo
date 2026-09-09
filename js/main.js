@@ -1,143 +1,133 @@
-  document.getElementById('year').textContent = new Date().getFullYear();
 
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+document.getElementById('year').textContent = new Date().getFullYear();
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+const mobile = window.matchMedia('(max-width: 1024px)');
+function setMenu(open, restoreFocus = false) {
+  navLinks.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+  navToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  if (restoreFocus) navToggle.focus();
+}
+navToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+navLinks.addEventListener('click', e => {
+  if (e.target.closest('a')) setMenu(false);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mobile.matches && navLinks.classList.contains('open')) {
+    setMenu(false, navLinks.contains(document.activeElement));
+  }
+});
+mobile.addEventListener('change', () => {
+  const focusWasInside = navLinks.contains(document.activeElement);
+  setMenu(false, mobile.matches && focusWasInside);
+});
 
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const tourCards = document.querySelectorAll('.tour-card');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      tourCards.forEach(card => {
-        card.style.display = (f === 'all' || card.dataset.region === f) ? '' : 'none';
-      });
+const filterBtns = document.querySelectorAll('.filter-btn');
+const tourCards = document.querySelectorAll('.tour-card');
+filterBtns.forEach(btn => btn.addEventListener('click', () => {
+  filterBtns.forEach(b => {
+    b.classList.toggle('active', b === btn);
+    b.setAttribute('aria-pressed', String(b === btn));
+  });
+  let count = 0;
+  tourCards.forEach(card => {
+    card.hidden = btn.dataset.filter !== 'all' && card.dataset.region !== btn.dataset.filter;
+    if (!card.hidden) count++;
+  });
+  document.getElementById('filterStatus').textContent = count + (count === 1 ? ' passeio encontrado.' : ' passeios encontrados.');
+}));
+
+const origin = document.getElementById('origin');
+const details = document.getElementById('origin_details');
+const date = document.getElementById('tdate');
+const time = document.getElementById('ttime');
+function localDate(now = new Date()) {
+  return now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+}
+function clearError(field) {
+  field.classList.remove('error-border');
+  field.removeAttribute('aria-invalid');
+  const error = document.getElementById(field.id + '-error');
+  if (error) { error.hidden = true; error.textContent = ''; }
+}
+function showError(field, message) {
+  field.classList.add('error-border');
+  field.setAttribute('aria-invalid', 'true');
+  const error = document.getElementById(field.id + '-error');
+  if (error) { error.textContent = message; error.hidden = false; }
+}
+function syncOrigin() {
+  const needsDetails = ['Hotel / Pousada', 'Outro endereço'].includes(origin.value);
+  document.getElementById('origin_details_container').classList.toggle('hidden', !needsDetails);
+  details.required = needsDetails;
+  details.disabled = !needsDetails;
+  if (!needsDetails) clearError(details);
+}
+origin.addEventListener('change', syncOrigin);
+syncOrigin();
+date.min = localDate();
+date.addEventListener('focus', () => { date.min = localDate(); });
+function errorMessage(field) {
+  if (field.validity.rangeUnderflow) return 'Escolha uma data a partir de hoje.';
+  if (field.validity.badInput) return 'Informe um valor válido.';
+  const messages = {
+    origin_details: 'Informe o nome do hotel ou o endereço completo.',
+    destination: 'Informe o destino.',
+    tdate: 'Informe a data do transfer.',
+    ttime: 'Informe o horário do transfer.',
+    name: 'Informe seu nome.',
+    phone: 'Informe seu telefone.'
+  };
+  return messages[field.id] || 'Preencha este campo.';
+}
+document.querySelectorAll('form').forEach(form => {
+  form.addEventListener('invalid', e => showError(e.target, errorMessage(e.target)), true);
+  form.querySelectorAll('input').forEach(field => {
+    field.addEventListener('input', () => {
+      if (field.validity.valid && field.value.trim()) clearError(field);
     });
   });
-
-  // Dynamic Date Constraint for Date Pickers
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
-  const formattedToday = `${yyyy}-${mm}-${dd}`;
-
-  const tdateInput = document.getElementById('tdate');
-  if (tdateInput) {
-    tdateInput.setAttribute('min', formattedToday);
+});
+[date,time].forEach(field => field.addEventListener('input', () => {
+  const selected = new Date(date.value + 'T' + time.value);
+  if (date.value && time.value && selected >= new Date()) {
+    clearError(date); clearError(time);
   }
-
-  // Conditional Origin Details
-  const originSelect = document.getElementById('origin');
-  const originDetailsContainer = document.getElementById('origin_details_container');
-  if (originSelect && originDetailsContainer) {
-    originSelect.addEventListener('change', () => {
-      if (originSelect.value === 'Hotel / Pousada' || originSelect.value === 'Outro endereço') {
-        originDetailsContainer.classList.remove('hidden');
-      } else {
-        originDetailsContainer.classList.add('hidden');
-      }
-    });
+}));
+function validate(form) {
+  let firstInvalid;
+  form.querySelectorAll('input').forEach(field => {
+    if (field.disabled) return;
+    clearError(field);
+    if (!field.validity.valid || (field.required && !field.value.trim())) {
+      showError(field, errorMessage(field));
+      firstInvalid ||= field;
+    }
+  });
+  if (firstInvalid) { firstInvalid.focus(); return false; }
+  return true;
+}
+function openWhatsApp(message) {
+  window.open('https://wa.me/558335087774?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
+}
+document.getElementById('transferForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if (!validate(e.currentTarget)) return;
+  if (new Date(date.value + 'T' + time.value) < new Date()) {
+    showError(time, 'Escolha uma data e um horário futuros.');
+    time.focus();
+    return;
   }
-
-  function clearErrors() {
-    document.querySelectorAll('.error-border').forEach(el => el.classList.remove('error-border'));
-  }
-
-  function showError(elementId) {
-    const el = document.getElementById(elementId);
-    if (el) {
-      el.classList.add('error-border');
-      el.focus();
-    }
-  }
-
-  function sendTransferQuote(e){
-    e.preventDefault();
-    clearErrors();
-
-    const origin = document.getElementById('origin').value.trim();
-    let originDetails = '';
-
-    if (origin === 'Hotel / Pousada' || origin === 'Outro endereço') {
-        originDetails = document.getElementById('origin_details').value.trim();
-        if (originDetails.length === 0) {
-            showError('origin_details');
-            return false;
-        }
-    }
-
-    const destination = document.getElementById('destination').value.trim();
-    if (destination.length === 0) {
-        showError('destination');
-        return false;
-    }
-
-    const date = document.getElementById('tdate').value;
-    const time = document.getElementById('ttime').value;
-    const pax = document.getElementById('pax').value.trim();
-
-    // Require Date
-    if (!date) {
-        showError('tdate');
-        return false;
-    }
-
-    // Check if the selected date and time are in the past
-    const now = new Date();
-    // If no time is provided, don't check for past time on the same day.
-    // Only block if the selected date is strictly before today.
-    // Since 'min' attribute handles the date selection in UI, this is an extra check.
-    if (time) {
-        const selectedDateTime = new Date(`${date}T${time}`);
-        if (selectedDateTime < now) {
-            showError('tdate');
-            showError('ttime');
-            return false;
-        }
-    } else {
-        const selectedDateOnly = new Date(`${date}T00:00:00`);
-        const todayDateOnly = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        if (selectedDateOnly < todayDateOnly) {
-            showError('tdate');
-            return false;
-        }
-    }
-
-    const dateFmt = date ? date.split('-').reverse().join('/') : 'a combinar';
-    let originText = origin;
-    if (originDetails) {
-        originText += ` (${originDetails})`;
-    }
-
-    const text = `Olá! Quero cotar um transfer.\nPartida: ${originText}\nDestino: ${destination}\nData: ${dateFmt}\nHorário: ${time || 'a combinar'}\nPassageiros: ${pax}`;
-    window.open(`https://wa.me/558335087774?text=${encodeURIComponent(text)}`, '_blank');
-    return false;
-  }
-
-  function sendToWhatsApp(e){
-    e.preventDefault();
-    clearErrors();
-
-    const name = document.getElementById('name').value.trim();
-    if (name.length === 0) {
-        showError('name');
-        return false;
-    }
-
-    const phone = document.getElementById('phone').value.trim();
-    if (phone.length === 0) {
-        showError('phone');
-        return false;
-    }
-
-    const tour = document.getElementById('tour').value;
-    const msg = document.getElementById('msg').value.trim();
-
-    const text = `Olá! Meu nome é ${name} (${phone}). Tenho interesse em: ${tour}. ${msg}`;
-    window.open(`https://wa.me/558335087774?text=${encodeURIComponent(text)}`, '_blank');
-    return false;
-  }
+  const departure = origin.value + (details.disabled ? '' : ' (' + details.value.trim() + ')');
+  openWhatsApp(`Olá! Quero cotar um transfer.\nPartida: ${departure}\nDestino: ${document.getElementById('destination').value.trim()}\nData: ${date.value.split('-').reverse().join('/')}\nHorário: ${time.value}\nPassageiros: ${document.getElementById('pax').value}`);
+});
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if (!validate(e.currentTarget)) return;
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const tour = document.getElementById('tour').value;
+  const msg = document.getElementById('msg').value.trim();
+  openWhatsApp(`Olá! Meu nome é ${name} (${phone}). Tenho interesse em: ${tour}. ${msg}`);
+});
