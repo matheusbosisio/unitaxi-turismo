@@ -180,7 +180,7 @@
   }
   .highlight-tag{
     position:absolute; bottom:12px; left:14px; z-index:1;
-    font-family:'JetBrains Mono',monospace; font-size:max(0.875rem, 0.68rem); letter-spacing:0.06em; text-transform:uppercase;
+    font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase;
     color:var(--sand-100); background:rgba(10,46,47,0.55); padding:4px 10px; border-radius:20px;
   }
   .highlight-body{ padding:22px; display:flex; flex-direction:column; flex:1;}
@@ -199,7 +199,7 @@
     color:var(--ink-600); cursor:pointer; transition:all .15s ease;
     min-height:44px;
   }
-  .filter-btn:hover{ border-color:var(--coral-500); color:var(--coral-500);}
+  .filter-btn:hover{ border-color:#B94325; color:#B94325;}
   .filter-btn.active{ background:var(--teal-950); border-color:var(--teal-950); color:var(--sand-100);}
 
   .tour-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
@@ -234,12 +234,12 @@
     display:block; text-align:center; background:var(--teal-950); color:var(--sand-100) !important;
     padding:11px; border-radius:4px; font-size:0.86rem; font-weight:600; transition:background .15s ease;
   }
-  .tour-cta:hover{ background:var(--coral-500);}
+  .tour-cta:hover{ background:#B94325;}
 
   /* ---- About ---- */
   .about{ padding:72px 0; background:var(--teal-950); color:var(--sand-200);}
   .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
-  .about h2{ color:var(--sand-100); font-size:2.05rem; margin-bottom:20px;}
+  .about h2{ color:var(--sand-100); font-size:clamp(1.6rem, 3vw, 2.2rem); margin-bottom:20px;}
   .about p{ color:var(--sand-200); margin-bottom:16px; font-size:1rem; line-height:1.6;}
   .about-list{ list-style:none;}
   .about-list li{
@@ -263,7 +263,7 @@
   .contact{ padding:72px 0; background:var(--sand-100);}
   .contact-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px;}
   .contact-info > .eyebrow{ color:#B94325;}
-  .contact-info h2{ font-size:2.05rem; margin-bottom:18px;}
+  .contact-info h2{ font-size:clamp(1.6rem, 3vw, 2.2rem); margin-bottom:18px;}
   .contact-info > p{ color:var(--ink-600); font-size:1rem; line-height:1.6; margin-bottom:32px;}
   .info-row{ display:flex; gap:16px; padding:18px 0; border-top:1px solid var(--line); align-items:flex-start;}
   .info-row:last-child{ border-bottom:1px solid var(--line);}
@@ -310,7 +310,6 @@
   }
   a.wa-float:hover{ transform:scale(1.08);}
 
-
   @media (max-width: 1024px){
     .service-grid, .tour-grid, .highlight-grid { grid-template-columns:repeat(2,1fr); }
     .hero-grid, .about-grid, .contact-grid{ grid-template-columns:1fr;}
@@ -339,7 +338,6 @@
     .services, .fleet, .highlights, .catalog, .about, .contact { padding: 48px 0; }
   }
   @media (max-width: 520px){
-    .fleet-grid{ grid-template-columns:1fr;}
     .quote-card .field-row{ grid-template-columns:1fr;}
     .cta-row .btn { width: 100%; justify-content: center; }
   }
