@@ -353,3 +353,6 @@
 .field-error { color:#96371F; font-size:0.875rem; margin-top:6px; }
 .field .error-border { border-color:#96371F !important; }
 @media(max-width:600px) { .highlights { padding-bottom:16px; } }
+
+.highlight-img img { width:100%; height:100%; object-fit:cover; }
+.highlight-img:has(img[src*="por-do-sol-jacare"]) img { object-position:center 65%; }
