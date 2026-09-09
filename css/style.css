@@ -323,3 +323,5 @@
     .fleet-grid{ grid-template-columns:1fr;}
     .quote-card .field-row{ grid-template-columns:1fr;}
   }
+.hidden { display: none !important; }
+.error-border { border-color: var(--coral-500) !important; outline: 1px solid var(--coral-500); }
