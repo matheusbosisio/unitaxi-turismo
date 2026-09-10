@@ -99,10 +99,22 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="preload" href="assets/fonts/work-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face{font-family:'Fraunces';font-style:normal;font-weight:600 700;font-display:swap;src:url('assets/fonts/fraunces-latin.woff2') format('woff2')}
+  @font-face{font-family:'Work Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url('assets/fonts/work-sans-latin.woff2') format('woff2')}
+  :root{--teal-950:#0A2E2F;--teal-900:#0E3D3F;--gold-500:#F0A840;--gold-400:#F5BC6B;--coral-500:#E8613D;--sand-100:#FBF6EC;--sand-200:#F0E6D2;--ink-900:#16241F;--ink-600:#4B5C56;--line:#D9CDAF}
+  *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:'Work Sans',sans-serif;background:var(--sand-100);color:var(--ink-900);line-height:1.6}h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.01em;color:var(--teal-950)}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,46,47,.94);backdrop-filter:blur(6px);border-bottom:1px solid rgba(240,168,64,.15)}.nav{display:flex;align-items:center;justify-content:space-between;max-width:1160px;margin:0 auto;padding:12px 28px}.brand{display:flex;align-items:center;gap:10px;color:var(--sand-100)}.brand img{width:56px;height:56px;object-fit:contain;flex-shrink:0;border-radius:8px}.brand span{font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;white-space:nowrap}.nav-links{display:flex;align-items:center;gap:30px}.nav-links a{color:var(--sand-200);font-size:.9rem;font-weight:500}.nav-cta{background:#B94325;color:#fff!important;padding:9px 18px;border-radius:3px;font-size:.86rem;font-weight:600}.nav-toggle{display:none;color:var(--sand-100);font-size:1.6rem;background:none;border:none;width:44px;height:44px}
+  .hero{background:radial-gradient(ellipse 900px 500px at 85% -10%,rgba(240,168,64,.18),transparent),linear-gradient(180deg,var(--teal-950) 0%,var(--teal-900) 100%);padding:160px 0 92px;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--gold-400);font-family:monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}.hero h1{text-wrap:balance;color:var(--sand-100);font-size:clamp(2rem,4vw,3.2rem);line-height:1.08;margin-bottom:22px}.hero h1 em{color:var(--gold-400)}.hero p.lead{color:var(--sand-200);font-size:1.06rem;max-width:490px;margin-bottom:34px}.cta-row{display:flex;gap:14px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:3px;font-weight:600;font-size:.95rem}.btn-primary{background:#B94325;color:#fff}.btn-ghost{border:1px solid rgba(251,246,236,.3);color:var(--sand-100)}.quote-card{background:var(--sand-100);border-radius:8px;padding:30px 28px;box-shadow:0 24px 60px rgba(0,0,0,.35);position:relative}.quote-badge{display:inline-block;background:var(--gold-500);color:var(--teal-950);font-family:monospace;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:2px;margin-bottom:14px}.quote-card h2{font-size:clamp(1.15rem,2.5vw,1.25rem);margin-bottom:20px}.field{margin-bottom:14px}.field label{display:block;font-size:.78rem;font-weight:600;margin-bottom:6px}.field input,.field select{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:4px;font:1rem 'Work Sans',sans-serif;background:#fff;min-height:48px}.quote-card .field-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.btn-quote{width:100%;background:#B94325;color:#fff;border:0;padding:14px;border-radius:4px;font:700 .98rem 'Work Sans',sans-serif;min-height:48px}.form-note{font-size:.8rem;color:var(--ink-600);margin-top:12px}
+  .skip-link{position:fixed;top:8px;left:8px;z-index:200;padding:12px 20px;background:#fff;color:#0A2E2F;transform:translateY(-200%)}.skip-link:focus{transform:translateY(0)}.hidden,[hidden]{display:none!important}.hero-grid>*,.quote-card,.field-row,.field{min-width:0}
+  @media(max-width:1024px){.hero-grid{grid-template-columns:1fr}.nav-links{position:absolute;top:100%;left:0;right:0;background:var(--teal-950);flex-direction:column;align-items:flex-start;padding:20px 28px;gap:18px;display:none}.nav-links.open{display:flex}.nav-toggle{display:flex;align-items:center;justify-content:center}.hero{padding-top:132px}}
+  @media(max-width:600px){.wrap,.nav{padding-left:16px;padding-right:16px}.nav{padding-top:8px;padding-bottom:8px}.nav .brand{gap:8px;min-width:0}.nav .brand img{width:48px;height:48px}.nav .brand span{font-size:clamp(.78rem,3.5vw,1rem)}.quote-card{padding:20px}.hero-grid{gap:24px}}
+  @media(max-width:520px){.quote-card .field-row{grid-template-columns:minmax(0,1fr)}.cta-row .btn{width:100%;justify-content:center}}
+</style>
+<link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="css/style.css"></noscript>
 <link rel="alternate" type="text/markdown" href="https://unitaxi-turismo.vercel.app/informacoes.md" title="Unitaxi &amp; Turismo: informações em texto">
 <link rel="sitemap" type="application/xml" href="https://unitaxi-turismo.vercel.app/sitemap.xml">
 <noscript><style>
@@ -111,14 +123,14 @@
   .nav { flex-wrap:wrap; }
   header { position:static; }
 </style></noscript>
-<meta name="google-site-verification" content="9WgBoBwujV_tNzD8cCeLTV4JEj4iDDub0dk5CUH2ewc" />
+<meta name="google-site-verification" content="9WgBoBwujV_tNzD8cCeLTV4JEj4iDDub0dk5CUH2ewc">
 </head>
 <body>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
 <header>
   <div class="nav">
-    <a href="#home" class="brand"><img src="assets/unitaxi-emblema-transparente.png" width="56" height="56" alt=""><span>UNITAXI &amp; TURISMO</span></a>
+    <a href="#home" class="brand"><img src="assets/unitaxi-emblema-96.webp" width="56" height="56" alt=""><span>UNITAXI &amp; TURISMO</span></a>
     <nav class="nav-links" id="navLinks" aria-label="Principal">
       <a href="#home">Início</a>
       <a href="#servicos">Serviços</a>
@@ -276,7 +288,7 @@
     <div class="highlight-grid">
       <div class="highlight-card">
         <div class="highlight-img">
-          <img src="assets/litoral-sul.jpg" alt="Falésias, coqueiros e praia no litoral sul da Paraíba" width="800" height="800" loading="lazy" decoding="async">
+          <img src="assets/litoral-sul-400.webp" srcset="assets/litoral-sul-400.webp 400w, assets/litoral-sul-800.webp 800w" sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 40px), 354px" alt="Falésias, coqueiros e praia no litoral sul da Paraíba" width="800" height="800" loading="lazy" decoding="async">
           <span class="highlight-tag">Litoral Sul</span>
         </div>
         <div class="highlight-body">
@@ -287,7 +299,7 @@
       </div>
       <div class="highlight-card">
         <div class="highlight-img">
-          <img src="assets/areia-vermelha.jpg" alt="Banco de areia de Areia Vermelha cercado por barcos e águas claras" width="960" height="977" loading="lazy" decoding="async">
+          <img src="assets/areia-vermelha-400.webp" srcset="assets/areia-vermelha-400.webp 400w, assets/areia-vermelha-800.webp 800w" sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 40px), 354px" alt="Banco de areia de Areia Vermelha cercado por barcos e águas claras" width="960" height="977" loading="lazy" decoding="async">
           <span class="highlight-tag">Areia Vermelha</span>
         </div>
         <div class="highlight-body">
@@ -298,7 +310,7 @@
       </div>
       <div class="highlight-card">
         <div class="highlight-img">
-          <img src="assets/por-do-sol-jacare.jpg" alt="Pôr do sol na Praia do Jacaré com saxofonista em um barco no rio" width="960" height="638" loading="lazy" decoding="async">
+          <img src="assets/por-do-sol-jacare-400.webp" srcset="assets/por-do-sol-jacare-400.webp 400w, assets/por-do-sol-jacare-800.webp 800w" sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 40px), 354px" alt="Pôr do sol na Praia do Jacaré com saxofonista em um barco no rio" width="960" height="638" loading="lazy" decoding="async">
           <span class="highlight-tag">Pôr do sol</span>
         </div>
         <div class="highlight-body">
@@ -528,17 +540,17 @@
   </div>
 
   <div class="wrap">
-    <div class="team-gallery" aria-label="Fotos da equipe Unitaxi e Turismo">
+    <div class="team-gallery" role="group" aria-label="Fotos da equipe Unitaxi e Turismo">
       <figure class="team-photo team-photo-main">
-        <img src="assets/equipe-passeio.jpg" alt="Três integrantes da equipe Unitaxi uniformizados, na água ao lado de embarcações." width="960" height="640" loading="lazy" decoding="async">
+        <img src="assets/equipe-passeio-400.webp" srcset="assets/equipe-passeio-400.webp 400w, assets/equipe-passeio-800.webp 800w" sizes="(max-width: 600px) calc(100vw - 32px), 360px" alt="Três integrantes da equipe Unitaxi uniformizados, na água ao lado de embarcações." width="960" height="640" loading="lazy" decoding="async">
         <figcaption>Quem acompanha você em cada passeio</figcaption>
       </figure>
       <figure class="team-photo">
-        <img src="assets/equipe-por-do-sol.jpg" alt="Dois integrantes da equipe Unitaxi brindando na praia ao pôr do sol." width="960" height="1280" loading="lazy" decoding="async">
+        <img src="assets/equipe-por-do-sol-400.webp" srcset="assets/equipe-por-do-sol-400.webp 400w, assets/equipe-por-do-sol-800.webp 800w" sizes="(max-width: 600px) calc(100vw - 32px), 360px" alt="Dois integrantes da equipe Unitaxi brindando na praia ao pôr do sol." width="960" height="1280" loading="lazy" decoding="async">
         <figcaption>Momentos para guardar</figcaption>
       </figure>
       <figure class="team-photo">
-        <img src="assets/equipe-buggy.jpg" alt="Integrantes da equipe Unitaxi em um buggy branco à beira da água." width="960" height="1280" loading="lazy" decoding="async">
+        <img src="assets/equipe-buggy-400.webp" srcset="assets/equipe-buggy-400.webp 400w, assets/equipe-buggy-800.webp 800w" sizes="(max-width: 600px) calc(100vw - 32px), 360px" alt="Integrantes da equipe Unitaxi em um buggy branco à beira da água." width="960" height="1280" loading="lazy" decoding="async">
         <figcaption>O litoral visto de perto</figcaption>
       </figure>
     </div>
@@ -559,19 +571,19 @@
         <p>Confira o que nossos clientes compartilharam no Google.</p>
       </div>
       <div class="review-summary">
-        <p class="review-rating"><strong>5,0</strong><span aria-label="de 5 estrelas">★★★★★</span></p>
+        <p class="review-rating"><strong>5,0</strong><span role="img" aria-label="de 5 estrelas">★★★★★</span></p>
         <p>28 avaliações no Google</p>
         <small>Nota e quantidade consultadas em <time datetime="2026-09-10">10/09/2026</time>.</small>
       </div>
     </div>
     <div class="review-grid">
       <figure class="review-card">
-        <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+        <div class="review-stars" role="img" aria-label="5 de 5 estrelas">★★★★★</div>
         <blockquote><p>“Foi ótimo o passeio, tudo perfeito esperando pelo próximo nota 10 de 10”</p></blockquote>
         <figcaption><strong>Fernanda ferreira</strong><a href="https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s107022528663873035994!2s0x7acc329f12f4c6d:0x1e09989dff5979da" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação de Fernanda ferreira no Google">Ver no Google</a></figcaption>
       </figure>
       <figure class="review-card">
-        <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+        <div class="review-stars" role="img" aria-label="5 de 5 estrelas">★★★★★</div>
         <blockquote><p>“Passeio incrível, equipe profissional e muito responsável, indico d+”</p></blockquote>
         <figcaption><strong>Geysa Joaquina Moreira</strong><a href="https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s103557867154809560305!2s0x7acc329f12f4c6d:0x1e09989dff5979da" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação de Geysa Joaquina Moreira no Google">Ver no Google</a></figcaption>
       </figure>
@@ -700,7 +712,7 @@
 <footer>
   <div class="wrap">
     <div class="footer-row">
-      <a href="#home" class="brand"><img src="assets/unitaxi-emblema-transparente.png" width="56" height="56" alt=""><span>UNITAXI &amp; TURISMO</span></a>
+      <a href="#home" class="brand"><img src="assets/unitaxi-emblema-96.webp" width="56" height="56" alt=""><span>UNITAXI &amp; TURISMO</span></a>
       <nav class="footer-links" aria-label="Rodapé">
         <a href="#servicos">Serviços</a>
         <a href="#roteiros">Roteiros</a>
