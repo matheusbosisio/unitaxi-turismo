@@ -360,3 +360,22 @@
 /* Compact emblem for header and footer */
 .brand img { width:56px; height:56px; object-fit:contain; flex-shrink:0; border-radius:8px; }
 @media(max-width:600px) { .nav { padding-top:8px; padding-bottom:8px; } .nav .brand { gap:8px; min-width:0; } .nav .brand img { width:48px; height:48px; } .nav .brand span { font-size:clamp(0.78rem,3.5vw,1rem); } .nav-toggle { flex-shrink:0; } }
+
+/* Allow native date/time controls to shrink inside grid tracks on iOS. */
+.hero-grid > *, .contact-grid > *, .quote-card, .field-row, .field { min-width:0; }
+.quote-card .field-row { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.field input[type="date"], .field input[type="time"] {
+  display:block;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  box-sizing:border-box;
+  -webkit-appearance:none;
+  appearance:none;
+  min-height:48px;
+}
+.field input::-webkit-date-and-time-value { text-align:left; min-width:0; }
+.field input::-webkit-datetime-edit { padding:0; }
+@media(max-width:520px) {
+  .quote-card .field-row { grid-template-columns:minmax(0,1fr); }
+}
