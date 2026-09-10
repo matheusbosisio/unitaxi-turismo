@@ -122,12 +122,41 @@ document.querySelectorAll('form').forEach(form => {
     });
   });
 });
-[date,time].forEach(field => field.addEventListener('input', () => {
-  const selected = new Date(date.value + 'T' + time.value);
-  if (date.value && time.value && selected >= new Date()) {
-    clearError(date); clearError(time);
+// Native mobile pickers may allow out-of-range selections; validate independently.
+function scheduleError(dateValue, timeValue, now = new Date()) {
+  if (dateValue && dateValue < localDate(now)) return { field: date, message: 'Escolha uma data a partir de hoje.' };
+  if (!dateValue || !timeValue) return null;
+  const selected = new Date(dateValue + 'T' + timeValue);
+  if (!Number.isFinite(selected.getTime()) || selected <= now) {
+    return { field: time, message: 'Escolha um horário futuro para esta data.' };
   }
-}));
+  return null;
+}
+function validateSchedule() {
+  date.min = localDate();
+  clearError(date);
+  clearError(time);
+  const error = scheduleError(date.value, time.value);
+  if (!error) return true;
+  showError(error.field, error.message);
+  return false;
+}
+[date, time].forEach(field => {
+  field.addEventListener('input', validateSchedule);
+  field.addEventListener('change', () => {
+    const error = scheduleError(date.value, time.value);
+    if (error) {
+      error.field.value = '';
+      showError(error.field, error.message);
+      return;
+    }
+    validateSchedule();
+  });
+});
+window.addEventListener('pageshow', () => { date.min = localDate(); });
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) { date.min = localDate(); }
+});
 function validate(form) {
   let firstInvalid;
   date.min = localDate();
@@ -160,10 +189,8 @@ document.querySelectorAll('a[href^="https://wa.me/"]').forEach(link => {
 document.getElementById('transferForm').addEventListener('submit', e => {
   e.preventDefault();
   if (!validate(e.currentTarget)) return;
-  const departureTime = new Date(date.value + 'T' + time.value);
-  if (!Number.isFinite(departureTime.getTime()) || departureTime <= new Date()) {
-    showError(time, 'Escolha uma data e um horário futuros.');
-    time.focus();
+  if (!validateSchedule()) {
+    (scheduleError(date.value, time.value)?.field || date).focus();
     return;
   }
   const departure = origin.value + (details.disabled ? '' : ' (' + cleanText(details.value) + ')');
