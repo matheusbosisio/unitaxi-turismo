@@ -1,0 +1,1 @@
+Fontes oficiais Google Fonts, subconjunto Latin com acentos portugueses, baixadas em 10/09/2026. Pesos variáveis 400 a 700; Fraunces mantém o eixo óptico. Arquivos OFL acompanham cada família. As fontes usam font-display: swap. Apenas Work Sans e Fraunces, usadas na primeira tela, recebem preload.
