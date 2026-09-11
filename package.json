@@ -1,0 +1,11 @@
+{
+  "name": "unitaxi-turismo",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "terser": "^5.44.0"
+  }
+}
