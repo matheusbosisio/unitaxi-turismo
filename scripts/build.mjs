@@ -22,7 +22,7 @@ await mkdir(path.join(out, 'css'), { recursive: true });
 await mkdir(path.join(out, 'js'), { recursive: true });
 
 // Keep the source stylesheet readable while shipping the production-only
-// performance rules together with it in one minified request.
+// performance rules together with it.
 const css = await readFile(path.join(root, 'css/style.css'), 'utf8');
 const performanceCss = await readFile(path.join(root, 'css/performance.css'), 'utf8');
 const cssResult = new CleanCSS({ level: 2 }).minify(`${css}\n${performanceCss}`);
@@ -46,6 +46,21 @@ for (const name of teamImages) {
     `src="assets/${name}-800.webp" srcset="assets/${name}-400.webp 400w, assets/${name}-800.webp 800w, assets/${name}-960.webp 960w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1160px) calc((100vw - 96px) / 3), 353px"`
   );
 }
+
+// The main stylesheet is only ~6 KiB minified. Inlining it on the single-page
+// landing page removes a render-blocking network round trip without changing
+// any styles. JetBrains Mono is used above the fold, so preload it explicitly
+// instead of discovering it only after CSS parsing.
+const stylesheetTag = '<link rel="stylesheet" href="css/style.css">';
+const inlineStyles = [
+  '<link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>',
+  `<style>${cssResult.styles}</style>`
+].join('\n');
+if (!html.includes(stylesheetTag)) {
+  throw new Error('Expected main stylesheet tag was not found in index.html.');
+}
+html = html.replace(stylesheetTag, inlineStyles);
+
 await writeFile(path.join(out, 'index.html'), html);
 
-console.log('Production build generated with minified assets and quality-preserving responsive image delivery.');
+console.log('Production build generated with minified assets, inlined CSS, font preloading, and quality-preserving responsive image delivery.');
