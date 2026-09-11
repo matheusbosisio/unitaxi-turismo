@@ -2,13 +2,15 @@
 
 > Táxi, transfer e passeios turísticos em João Pessoa, Paraíba, Brasil.
 
-A Unitaxi & Turismo atende moradores e visitantes que precisam de transporte urbano, transfer de aeroporto e passeios turísticos. A área de atendimento apresentada no site inclui João Pessoa e o litoral da Paraíba e do Rio Grande do Norte.
+A Unitaxi & Turismo atende moradores e visitantes que precisam de transporte urbano, transfer de aeroporto e passeios turísticos. A área de atendimento apresentada no site inclui João Pessoa, o litoral e o interior da Paraíba, além de Recife.
 
 ## Serviços
 
 - Táxi urbano em João Pessoa.
 - Transfer de aeroporto, rodoviária, hotéis e outros endereços.
 - Passeios guiados e transporte turístico privativo.
+- Roteiros para Litoral Sul I e II, Litoral Extremo Norte, Cabaceiras, Areia, Alagoa Grande e Recife.
+- Passeios de catamarã e lancha sob consulta.
 
 Consulte [o catálogo de passeios](https://unitaxi-turismo.vercel.app/#passeios) para roteiros, horários e itens incluídos. A página principal é a fonte para os detalhes atualizados de cada passeio.
 
