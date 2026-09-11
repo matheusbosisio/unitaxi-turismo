@@ -1,0 +1,17 @@
+/* Quality-preserving rendering optimizations.
+   These rules avoid painting long below-the-fold sections until needed,
+   without changing image compression, dimensions or visual quality. */
+@supports (content-visibility: auto) {
+  .services,
+  .fleet,
+  .highlights,
+  .catalog,
+  .about,
+  .reviews,
+  .payment,
+  #como-reservar,
+  .contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+}
