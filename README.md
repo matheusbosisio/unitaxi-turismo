@@ -45,6 +45,22 @@ Foram implementados ou configurados:
 
 Atualmente o projeto utiliza o endereço fornecido pela Vercel. A adoção de um domínio próprio é uma das próximas etapas da presença digital da empresa.
 
+## 📊 Qualidade e métricas
+
+Auditoria realizada com **Google PageSpeed Insights / Lighthouse em 11/09/2026**, após as rodadas de otimização do projeto:
+
+| Categoria | Mobile | Desktop |
+| --- | ---: | ---: |
+| Performance | **85/100** | **98/100** |
+| Acessibilidade | **100/100** | **100/100** |
+| Práticas recomendadas | **100/100** | **100/100** |
+| SEO | **100/100** | **100/100** |
+| Navegação agêntica | **3/3** | **3/3** |
+
+A otimização foi conduzida de forma iterativa: alterações foram implementadas, publicadas e medidas novamente. Quando uma tentativa de otimização do caminho crítico de CSS/fontes apresentou regressão no desempenho mobile, a mudança foi revertida, preservando a versão com melhor resultado medido.
+
+A prioridade foi melhorar a entrega no mobile **sem reduzir perceptivelmente a qualidade das imagens** e sem remover ferramentas importantes para o negócio, como o Google Analytics, apenas para elevar uma pontuação sintética.
+
 ## ⚡ Performance e acessibilidade
 
 A arquitetura foi mantida propositalmente leve, evitando frameworks desnecessários para o escopo da aplicação.
@@ -52,7 +68,10 @@ A arquitetura foi mantida propositalmente leve, evitando frameworks desnecessár
 Entre as otimizações implementadas estão:
 
 - fontes hospedadas localmente com `font-display: swap`;
-- imagens responsivas e formatos otimizados;
+- imagens responsivas e formatos otimizados, preservando a qualidade visual dos arquivos originais;
+- entrega de variantes de imagem adequadas ao tamanho da tela;
+- minificação de CSS e JavaScript no processo de build;
+- otimizações de renderização para conteúdo abaixo da dobra;
 - carregamento prioritário de recursos importantes;
 - HTML semântico;
 - navegação por teclado;
@@ -81,6 +100,10 @@ O menu mobile controla `aria-expanded`, atualiza seu rótulo conforme o estado, 
 
 Para uma landing page comercial, adicionar um framework significaria aumentar a quantidade de JavaScript entregue ao usuário sem uma necessidade proporcional. Por isso, o projeto utiliza JavaScript Vanilla e mantém grande parte do conteúdo diretamente no HTML.
 
+### Otimização orientada por medição
+
+As melhorias de performance foram validadas com PageSpeed Insights em mobile e desktop. O processo incluiu otimização da entrega de imagens responsivas, minificação no build e experimentos no caminho crítico de renderização. Alterações que causaram regressão mensurável foram revertidas em vez de mantidas apenas por parecerem corretas em teoria.
+
 ### Conversão sem backend desnecessário
 
 O formulário organiza e valida as informações no navegador e gera uma mensagem pronta para o WhatsApp. Isso atende ao fluxo comercial atual da empresa sem introduzir infraestrutura de servidor apenas para intermediar o contato.
@@ -95,12 +118,15 @@ O formulário organiza e valida as informações no navegador e gera uma mensage
 - **Schema.org / JSON-LD:** dados estruturados para mecanismos de busca.
 - **Git & GitHub:** versionamento e histórico de evolução do projeto.
 - **Vercel:** hospedagem e deploy contínuo integrado ao repositório.
+- **PageSpeed Insights / Lighthouse:** auditoria e validação das otimizações de performance, acessibilidade, boas práticas e SEO.
 
 ## 🏗️ Processo de desenvolvimento
 
-O projeto evoluiu de forma incremental, com melhorias separadas em branches e pull requests para facilitar revisão e rastreabilidade. Entre as etapas estiveram ajustes de responsividade, compatibilidade com iOS, acessibilidade, qualidade e responsividade de imagens, fontes locais, SEO, favicon e configuração de Analytics.
+O projeto evoluiu de forma incremental, com melhorias separadas em branches e pull requests para facilitar revisão e rastreabilidade. Entre as etapas estiveram ajustes de responsividade, compatibilidade com iOS, acessibilidade, qualidade e responsividade de imagens, fontes locais, SEO, favicon, configuração de Analytics e otimizações orientadas pelos resultados de auditorias.
 
-Ferramentas de Inteligência Artificial, incluindo Claude e Gemini, foram utilizadas como apoio durante etapas de implementação e revisão. As decisões de produto, arquitetura, regras de negócio, validação, testes no contexto real da empresa e evolução do projeto foram conduzidas pelo autor.
+Ferramentas de Inteligência Artificial — **ChatGPT, Claude e Gemini** — foram utilizadas como apoio em tarefas de desenvolvimento, pesquisa, revisão de código, análise de auditorias, identificação de oportunidades de otimização e documentação. O uso dessas ferramentas faz parte do fluxo de trabalho do projeto como assistência à engenharia, com validação das alterações por meio de versionamento, deploy e testes objetivos.
+
+As decisões de produto, requisitos do negócio, seleção e validação das mudanças, testes no contexto real da empresa e evolução do projeto permanecem sob responsabilidade do autor.
 
 ## 📈 Projeto em produção
 
