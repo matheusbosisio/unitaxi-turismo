@@ -1,6 +1,7 @@
 {
   "name": "unitaxi-turismo",
   "private": true,
+  "packageManager": "pnpm@11.19.0",
   "scripts": {
     "build": "node scripts/build.mjs"
   },
